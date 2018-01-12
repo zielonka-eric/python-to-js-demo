@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{title}}</title>
+        <style>
+            body { font-family: Helvetica, Arial, sans-serif; }
+            h1 { font-size: 32px; }
+            p { font-size: 16px; }
+            div.chart {
+                margin: 60px auto;
+                width: 600px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>{{title}}</h1>
+        <ul>
+            {% for number in data %}
+            <li>{{number}}</li>
+            {% endfor %}
+        </ul>
+        
+        <div class='chart'></div>
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            
+        </script>
+    </body>
+</html>
