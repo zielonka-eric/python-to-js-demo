@@ -4,28 +4,52 @@
         <meta charset="UTF-8">
         <title>{{title}}</title>
         <style>
-            body { font-family: Helvetica, Arial, sans-serif; }
-            h1 { font-size: 32px; }
-            p { font-size: 16px; }
-            div.chart {
+            body { font-family: Helvetica, Arial, sans-serif;  font-size: 16px; }
+            h1 { font-size: 32px; text-align: center;}
+            .container {
+                width: 700px;
+                margin: 0 auto;
+            }
+            .chart {
                 margin: 60px auto;
                 width: 600px;
+                padding: 4px;
+                border: 2px solid #19331d;
+                border-radius: 2px;
+            }
+            .chart div {
+                font-size: 16px;
+                text-align: right;
+                color: #fff;
+                background-color: #237531;
+                padding: 6px;
+                margin: 4px 0;
             }
         </style>
     </head>
     <body>
-        <h1>{{title}}</h1>
-        <ul>
-            {% for number in data %}
-            <li>{{number}}</li>
-            {% endfor %}
-        </ul>
+        <div class='container'>
+            <h1>{{title}}</h1>
+            <!--
+            <ul>
+                {% for number in data %}
+                <li>{{number}}</li>
+                {% endfor %}
+            </ul>
+            -->
+            <div class='chart'></div>
+        </div>
         
-        <div class='chart'></div>
-
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script>
-            
+            data = JSON.parse('{{ data | tojson | safe }}');
+
+            d3.select('.chart')
+              .selectAll('div')
+                .data(data)
+              .enter().append('div')
+                .style('width', function(d) { return d + 'px'; })
+                .text(function(d) { return d; });
         </script>
     </body>
 </html>
